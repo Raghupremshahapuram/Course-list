@@ -1,0 +1,32 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "React Basics",
+      "name": "React Basics",
+      "description": "Learn React fundamentals"
+    },
+    {
+      "id": "2",
+      "title": "Advanced React",
+      "name": "React Advance",
+      "description": "Dive deeper into React concepts"
+    },
+    {
+      "id": "3",
+      "title": "Full-Stack Development",
+      "name": "Full-stack Devepos",
+      "description": "Learn full-stack web development"
+    }
+  ],
+  "enquiries": [
+    
+    {
+      "id": "9587",
+      "courseId": "3",
+      "courseName": "Full-stack Devepos",
+      "name": "raghuprem Shahapuram",
+      "email": "raghupremshahapuram@gmail.com"
+    }
+  ]
+}
