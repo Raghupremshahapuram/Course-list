@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import CourseList from "./Components/CousreList";
 import Enquiries from "./Components/Enquiries";
-
+import EnquireForm from "./Components/EnquireForm";
 class Routing extends Component{
     render(){
         return(
@@ -23,15 +23,15 @@ class Routing extends Component{
                     <div className="collapse navbar-collapse" id="myNavbar">
                     <ul className="nav navbar-nav">
                         <li> <Link to="/">Courses</Link> </li>
-                        <li><Link to="/Enquires">User Enquiries</Link></li>
+                        <li><Link to="/Enquiries">User Enquiries</Link></li>
                     </ul>
                     </div>
                 </div>
             </nav>
       <Routes>
-        <Route path="/" element={<CourseList />} />
-        <Route path="/Enquires" element={<Enquiries />} />
-        
+      <Route path="/" element={<CourseList />} />
+      <Route path="/enquire/:id/:courseName" element={<EnquireForm />} />
+      <Route path="/Enquiries" element={<Enquiries />} />
       </Routes>
     </Router>
         )

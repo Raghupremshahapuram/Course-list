@@ -20,13 +20,11 @@
     }
   ],
   "enquiries": [
-    
     {
-      "id": "9587",
-      "courseId": "3",
-      "courseName": "Full-stack Devepos",
+      "id": "0708",
       "name": "raghuprem Shahapuram",
-      "email": "raghupremshahapuram@gmail.com"
+      "email": "raghupremshahapuram@gmail.com",
+      "course": "Full-stack Devepos"
     }
   ]
 }

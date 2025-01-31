@@ -1,67 +1,37 @@
-import React,{Component} from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { submitEnquiry } from "../Redux/enquirySlice";
 
-class EnquireForm extends Component{
-constructor(){
-    super()
-    this.state={
-        name:"",
-        email:""
-    };
-}
-handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+import { useNavigate, useParams } from "react-router-dom";
+
+const EnquireForm = () => {
+  const { courseName } = useParams();
+  const decodedCourseName = decodeURIComponent(courseName);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [course] = useState(decodedCourseName);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(submitEnquiry({ name, email, course, }));
+   
+    navigate("/Enquiries");
   };
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const { course } = this.props;
-    const enquiry = {
-      courseId: course.id,
-      courseName: course.name,
-      name: this.state.name,
-      email: this.state.email,
-    };
-    axios.post("http://localhost:5000/enquiries", enquiry).then(() => {
-        alert("Enquiry submitted successfully!");
-        this.props.onClose();
-      });
-    };
 
-  render() {
-    const { course, onClose } = this.props;
-    return (
-      <div>
-        <h2>Enquire about {course.name}</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-          <br />
-          <button type="submit" class="btn btn-primary">Submit</button>  
-          <button type="button" class="btn btn-primary btn-sm" onClick={onClose}>
-            Close
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+    <h2>Enquire About: {decodedCourseName}</h2> 
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} required />
+      <input type="email" placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <input type="text" value={course} readOnly />
+      <button type="submit">Submit</button>
+    </form>
+    </div>
+  );
+};
+
 export default EnquireForm;
